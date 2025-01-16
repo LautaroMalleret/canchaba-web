@@ -1,0 +1,25 @@
+
+
+.custom-card {
+    background-color: #ffffffe7; /* Fondo personalizado */
+    color: #16410c; /* Texto personalizado */
+    border: 1px solid #ffffffe7; /* Borde */
+    box-shadow: 2px 2px 5px #16410c; /* Sombra */
+    margin: 3px 10px;
+    padding: 15px;
+  }
+  
+ /* .custom-card mat-card-title {
+    color: #16410c; 
+  }
+   */
+   mat-card-header{
+    margin: 0px;
+    padding: 0px;
+   }
+    .custom-card mat-card-subtitle {
+        color: #16410c; 
+    }
+
+
+      
