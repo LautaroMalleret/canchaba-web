@@ -14,7 +14,10 @@ export class CanchaService {
 
   // Obtener todas las canchas
   getAllCanchas(): Observable<Cancha[]> {
-    return this.http.get<Cancha[]>(`${this.apiUrl}/canchas`);
+    return this.http.get<{message: string; object: Cancha[]}>(`${this.apiUrl}/canchas`)
+    .pipe(
+      map(response => response.object)
+    );
   }
 
   // Obtener una cancha por ID
@@ -26,9 +29,6 @@ export class CanchaService {
   searchCanchasByName(name: string): Observable<Cancha[]> {
     return this.http.get<Cancha[]>(`${this.apiUrl}?name=${name}`);
   }
-
-
-
 
   
   // Filtrar canchas por ciudad, tipo de suelo y cantidad de jugadores
