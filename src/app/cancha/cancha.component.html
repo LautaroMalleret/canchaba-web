@@ -1,9 +1,28 @@
-<mat-card class="custom-card" *ngFor="let cancha of canchas">
+<app-nav (searchChanged)="onSearchChanged($event)"></app-nav>
+
+<mat-divider></mat-divider>
+
+<app-filter (filterChanged)="onFilterChanged($event)"></app-filter>
+
+<br><br>
+
+<mat-divider></mat-divider>
+<!-- recorro las canchas y creo las cards -->
+<div *ngIf="canchas.length > 0 ; else noCanchas" class="no-results">
+<mat-card class="custom-card" *ngFor="let cancha of canchas;  let i = index">
     <mat-card-header>
-      <mat-card-title> {{cancha.name}}</mat-card-title>
-      <mat-card-subtitle>{{cancha.address}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-chip-set aria-label="Dog selection">
+        <div class="header-content">
+            <div>
+                <mat-card-title> {{cancha.name}}</mat-card-title>
+                <mat-card-subtitle>{{cancha.address}}</mat-card-subtitle>
+            <ng-container *ngIf="canchas.length === 0"></ng-container>
+            </div>
+            <button mat-icon-button class="details-button" (click)="toggleDetails(i)">
+                <mat-icon>{{ showDetails[i] ? 'expand_less' : 'expand_more' }}expand_more</mat-icon>
+            </button>
+        </div>
+        </mat-card-header>
+    <mat-chip-set>
         <mat-chip class="custom-chip">
             <mat-icon aria-hidden="false" fontIcon="pin_drop"></mat-icon>
             {{cancha.city}}
@@ -17,4 +36,21 @@
             {{cancha.type}}
         </mat-chip>
       </mat-chip-set>
+
+      <mat-chip-set *ngIf="showDetails[i]">
+        <mat-chip class="custom-chip">
+          <mat-icon aria-hidden="false" fontIcon="phone"></mat-icon>
+          {{ cancha.phone }}
+        </mat-chip>
+        <mat-chip class="custom-chip">
+          <mat-icon aria-hidden="false" fontIcon="sports_soccer"></mat-icon>
+          Cantidad de canchas: {{ cancha.quantity }}
+        </mat-chip>
+      </mat-chip-set>
   </mat-card>
+
+</div>
+<!-- En caso de no haber canchas que mostrar -->
+<ng-template #noCanchas>
+    <p>No se encontraron canchas.</p>
+  </ng-template>

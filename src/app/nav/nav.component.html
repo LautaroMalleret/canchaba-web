@@ -1,9 +1,12 @@
 <nav class="navbar bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand">CANCHAS BA</a>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
+      <a class="navbar-brand d-flex align-items-center">
+        <mat-icon aria-hidden="false" fontIcon="sports_soccer"></mat-icon>
+        <span class="ms-2">CANCHAS BA</span>
+      </a>
+      <form (ngSubmit)="onSearch()">
+        <input type="text" [(ngModel)]="searchTerm" name="search" placeholder="Buscar por nombre">
+        <button type="submit">Buscar</button>
       </form>
     </div>
   </nav>

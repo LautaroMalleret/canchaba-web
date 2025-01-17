@@ -1,0 +1,29 @@
+.navbar {
+    background-color: #ffffffdc;
+    
+  }
+
+  .navbar-brand {
+    font-weight: bold;
+    color: #16410c;
+  }
+
+  form input[type="text"] {
+    border-radius: 10px;
+    padding: 5px 10px;
+    border: 1px solid #16410c;
+  }
+
+  form button[type="submit"] {
+    background-color: #16410c;
+    color: #ffffff;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  form button[type="submit"]:hover {
+    background-color: #226812;
+  }

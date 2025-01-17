@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { NavComponent } from "./nav/nav.component";
-import { FilterComponent } from "./filter/filter.component";
 import { CanchaComponent } from "./cancha/cancha.component";
 import {MatDividerModule} from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -14,11 +13,10 @@ import { CommonModule } from '@angular/common';
   imports: [
     RouterOutlet,
     MatSlideToggleModule,
-    NavComponent,
-    FilterComponent,
     CanchaComponent,
     MatDividerModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
 ],
 standalone: true,
 

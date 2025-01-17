@@ -1,32 +1,26 @@
-<form class="row gx-3 gy-2 align-items-center m-2">
-
-    <div class="col-sm-5">
-        <label class="visually-hidden" for="specificSizeSelect">Preference</label>
-        <select class="form-select" id="specificSizeSelect">
-          <option selected value="">TODAS LAS CIUDADES</option>
-          <option value="{{ciudad}}" *ngFor="let ciudad of cities">{{ciudad}}</option>
-        </select>
-      </div>
-      <div class="col-sm-3">
-        <label class="visually-hidden" for="specificSizeSelect">Preference</label>
-        <select class="form-select" id="specificSizeSelect">
-          <option selected value="">TODO TIPO DE SUELO</option>
-          <option value="Sintetico">Sintetico</option>
-          <option value="Cesped">Cesped</option>
-          <option value="Piso">Piso</option>
-        </select>
-      </div>
-    <div class="col-sm-2">
-      <label class="visually-hidden" for="specificSizeSelect">Preference</label>
-      <select class="form-select" id="specificSizeSelect">
-        <option selected value="">N°</option>
-        <option value="5">5</option>
-        <option value="7">7</option>
-        <option value="11">11</option>
+  <form (ngSubmit)="applyFilter()" class="row g-3 m-1">
+    <div class="col-md-4 col-12">
+      <label class="visually-hidden" for="specificCitySelect">CIUDAD</label>
+      <select class="form-select" id="specificCitySelect" [(ngModel)]="filtro.city" name="city">
+        <option selected value="">TODAS LAS CIUDADES</option>
+        <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
       </select>
     </div>
-    <div class="col-sm-2">
-      <button type="submit" class="btn btn-primary">Filtrar</button>
+    <div class="col-md-4 col-12">
+      <label class="visually-hidden" for="specificSizeSelect">TAMAÑO</label>
+      <select class="form-select" id="specificSizeSelect" [(ngModel)]="filtro.size" name="size">
+        <option selected value="">TODOS LOS TAMAÑO</option>
+        <option *ngFor="let size of sizes" [value]="size">{{ size }}</option>
+      </select>
     </div>
-
+    <div class="col-md-2 col-12">
+      <label class="visually-hidden" for="specificTypeSelect">TIPO</label>
+      <select class="form-select" id="specificTypeSelect" [(ngModel)]="filtro.type" name="type">
+        <option selected value="">TODOS LOS TIPOS</option>
+        <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+    <div class="d-grid col-md-2 col-12">
+      <button type="submit" class="btn btn-outline-success">Filtrar</button>
+    </div>
   </form>
