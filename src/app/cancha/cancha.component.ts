@@ -6,10 +6,10 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import { Cancha } from '../../models/cancha.model';
 import { CanchaService } from '../../services/cancha.service';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { NavComponent } from '../nav/nav.component';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FilterComponent } from '../filter/filter.component';
 import { MatDivider } from '@angular/material/divider';
+import { SearchService } from '../../services/search.service';
 
 /**
  * @title Card with actions alignment option
@@ -25,25 +25,35 @@ import { MatDivider } from '@angular/material/divider';
     MatIconModule, 
     CommonModule,
     MatDialogModule,
-    NavComponent,
     FilterComponent,
-    MatDivider
-    
+    MatDivider    
     ],
   changeDetection: ChangeDetectionStrategy.Default, //detecta los cambios en canchas[] para actualizar la vista
 })
 export class CanchaComponent implements OnInit{
 
-  canchas: Cancha[] = [];
-  showDetails: boolean[] = [];
+  canchas: Cancha[] = [];           //canchas de la vista
+  showDetails: boolean[] = [];      //para mostrar detalles de las canchas
 
-  constructor(private canchaService: CanchaService, public dialog: MatDialog) {}
+  constructor(
+    private canchaService: CanchaService, //Para endpoints 
+    private searchService: SearchService  //Para comunicacion con el input de busqueda
+  ) 
+    {}
 
   ngOnInit(): void {
+    //Para ver la lista de todas las canchas al inicio.
     this.canchaService.getAllCanchas().subscribe((canchas: Cancha[]) => {
       this.canchas = canchas;
       this.showDetails = new Array(canchas.length).fill(false); //inicializa el array de booleanos para mostrar detalles
 
+    });
+
+    //Para actualizar las canchas a la busqueda por nombre en la vista
+    this.searchService.searchTerm$.subscribe((searchTerm: string) => {  //Observable al servicio
+      if (searchTerm) {
+        this.searchByName(searchTerm); // Llama al método que ejecuta el endpoint
+      }
     });
   }
 
@@ -62,12 +72,12 @@ export class CanchaComponent implements OnInit{
   }
 
   //Para buscar canchas por nombre
-  onSearchChanged(searchTerm: string): void {
-    this.canchaService.searchCanchasByName(searchTerm).subscribe((canchas: Cancha[]) => {
-      this.canchas = canchas;
-      this.showDetails = new Array(canchas.length).fill(false); //inicializa el array de booleanos para mostrar detalles
-    });
+  searchByName(searchTerm: string): void {
+  this.canchaService.searchCanchasByName(searchTerm).subscribe((canchas: Cancha[]) => {
+  this.canchas = canchas;
+  this.showDetails = new Array(canchas.length).fill(false); //inicializa el array de booleanos para mostrar detalles
+  });
+ 
+
   }
-
-
 }

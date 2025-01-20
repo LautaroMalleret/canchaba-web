@@ -44,6 +44,10 @@ filterCanchas(
   type?: string,
   size?: string
 ): Observable<Cancha[]> {
+  if((!city && !type && !size) || (city === '' && type === '' && size === '')) {
+    return this.getAllCanchas();
+  
+  }
   const params = {
     city: city || '',
     type: type || '',

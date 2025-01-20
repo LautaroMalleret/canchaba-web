@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, Output, EventEmitter, NgModule} from '@angular/core';
+import { Component, Inject, OnInit, Output, EventEmitter} from '@angular/core';
 import { CanchaService } from '../../services/cancha.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

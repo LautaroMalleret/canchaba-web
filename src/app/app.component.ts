@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { CanchaComponent } from "./cancha/cancha.component";
 import {MatDividerModule} from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NavComponent } from './nav/nav.component';
 
 
 @Component({
@@ -13,10 +12,10 @@ import { FormsModule } from '@angular/forms';
   imports: [
     RouterOutlet,
     MatSlideToggleModule,
-    CanchaComponent,
     MatDividerModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    NavComponent
 ],
 standalone: true,
 
@@ -26,3 +25,6 @@ standalone: true,
 export class AppComponent {
   title = 'canchas-web';
 }
+
+
+

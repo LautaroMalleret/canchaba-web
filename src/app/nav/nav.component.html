@@ -1,12 +1,27 @@
 <nav class="navbar bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand d-flex align-items-center">
+      <!-- Seccion de logo -->
+      <a class="navbar-brand d-flex align-items-center" [routerLink]="['/inicio']">
         <mat-icon aria-hidden="false" fontIcon="sports_soccer"></mat-icon>
         <span class="ms-2">CANCHAS BA</span>
       </a>
-      <form (ngSubmit)="onSearch()">
+      <!-- Seccion de busqueda de cancha -->
+      <form (ngSubmit)="onSearchChanged()"> 
         <input type="text" [(ngModel)]="searchTerm" name="search" placeholder="Buscar por nombre">
         <button type="submit">Buscar</button>
       </form>
+
+      <!-- Seccion para agregar una cancha -->
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="btn-add">
+        <mat-icon>add</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+        <a mat-menu-item [routerLink]="['/agregar-cancha']">
+          <mat-icon>list_alt_add</mat-icon>
+          <span>Agregar una cancha</span>
+        </a>
+        </button>
+      </mat-menu>
     </div>
   </nav>
